@@ -14,14 +14,6 @@ public class A {
         }
     }
 
-    private static int evalOperation(int left, String operator, int right) throws UnsupportedOperationException {
-        switch (operator) {
-            case "inc": return left + right;
-            case "dec": return left - right;
-            default: throw new UnsupportedOperationException();
-        }
-    }
-
     public static void main(String[] args) throws UnsupportedOperationException {
         Scanner in = new Scanner(System.in);
 
@@ -31,7 +23,7 @@ public class A {
             String[] ins = in.nextLine().split(" ");
 
             if (evalCondition(reg.getOrDefault(ins[4], 0), ins[5], Integer.parseInt(ins[6]))) {
-                reg.put(ins[0], evalOperation(reg.getOrDefault(ins[0], 0), ins[1], Integer.parseInt(ins[2])));
+                reg.put(ins[0], reg.getOrDefault(ins[0], 0) + (ins[1].equals("inc") ? 1 : -1) * Integer.parseInt(ins[2]));
             }
         }
 
